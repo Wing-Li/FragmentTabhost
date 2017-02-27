@@ -23,6 +23,33 @@ Gradle
 
 ## Usage
 
+Add activity_main.xml **(FragmentTabHost must android:id="@android:id/tabhost" )**：
+
+    <?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout
+        android:id="@+id/activity_main"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/main_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <com.lyl.tabhost.FragmentTabHost
+            android:id="@android:id/tabhost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </com.lyl.tabhost.FragmentTabHost>
+    </LinearLayout>
+
+
+Set setOnTabClickListener for FragmentTabHost：
+
     // you can set up onTabChanged before onTabClick.
     mFragmentTabHost.setOnTabClickListener(new FragmentTabHost.OnTabClickListener() {
         @Override
