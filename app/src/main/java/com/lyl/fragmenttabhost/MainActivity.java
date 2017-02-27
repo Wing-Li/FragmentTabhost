@@ -1,5 +1,7 @@
 package com.lyl.fragmenttabhost;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -36,20 +38,20 @@ public class MainActivity extends AppCompatActivity {
         mFragmentTitles = new ArrayList<String>();
         mFragmentTitles.add("首页");
         mFragmentTitles.add("消息");
-        mFragmentTitles.add("设定");
+        mFragmentTitles.add("WingLi");
         mFragmentTitles.add("关于");
 
         mFragmentLists = new ArrayList<>();
         mFragmentLists.add(BlankFragment.newInstance("首页").getClass());
         mFragmentLists.add(BlankFragment.newInstance("消息").getClass());
-        mFragmentLists.add(BlankFragment.newInstance("设定").getClass());
+        mFragmentLists.add(BlankFragment.newInstance("WingLi").getClass());
         mFragmentLists.add(BlankFragment.newInstance("关于").getClass());
 
         mFragmentResIds = new ArrayList<>();
         mFragmentResIds.add(R.drawable.tab_hometop_btn);
-        mFragmentResIds.add(R.drawable.tab_hometop_btn);
-        mFragmentResIds.add(R.drawable.tab_hometop_btn);
-        mFragmentResIds.add(R.drawable.tab_hometop_btn);
+        mFragmentResIds.add(R.drawable.tab_msgtop_btn);
+        mFragmentResIds.add(R.drawable.tab_opentop_btn);
+        mFragmentResIds.add(R.drawable.tab_abouttop_btn);
     }
 
 
@@ -78,8 +80,13 @@ public class MainActivity extends AppCompatActivity {
         mFragmentTabHost.setOnTabClickListener(new FragmentTabHost.OnTabClickListener() {
             @Override
             public boolean onTabClick(String tabId) {
-                if ("设定".equals(tabId)) {
-                    Toast.makeText(MainActivity.this, "设定被拦截，不跳转。但是依然有点击效果，毕竟它被点击了，总得做点什么，只是不跳页面。", Toast.LENGTH_LONG).show();
+                if ("WingLi".equals(tabId)) {
+                    Intent intent = new Intent();
+                    intent.setAction(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse("http://www.jianshu.com/u/320f9e8f7fc9"));
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    Toast.makeText(getApplicationContext(), "跳转到另一个APP。", Toast.LENGTH_LONG).show();
                     return true;
                 }
 
